@@ -39,4 +39,12 @@ read_sales.employees.each do |employee_string|
   end
 end
 
+read_sales.clients.each do |customer_string|
+  customer_data = Customer.get_customer_data(customer_string)
+  Customer.find_or_create_by(account_number: customer_data[:account_number]) do |company|
+    company.name = customer_data[:name]
+    company.account_number = customer_data[:account_number]
+  end
+end
+
 # binding.pry
