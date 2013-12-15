@@ -47,4 +47,12 @@ read_sales.clients.each do |customer_string|
   end
 end
 
-# binding.pry
+read_sales.products.each do |product|
+  # product.split.map(&:capitalize).join(" ")
+  product_description = Product.get_product_info(product)
+  Product.find_or_create_by(name: product_description[:name]) do |product|
+    product.name = product_description[:name]
+  end
+end
+
+binding.pry
