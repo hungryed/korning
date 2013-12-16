@@ -55,10 +55,12 @@ end
 
 read_sales.clients.each do |customer_string|
   customer_data = Customer.get_customer_data(customer_string)
-  Customer.find_or_create_by(account_number: customer_data[:account_number]) do |company|
-    company.name = customer_data[:name]
-    company.account_number = customer_data[:account_number]
-  end
+  company = Customer.find_or_create_by(account_number: customer_data[:account_number])
+  company.update_attributes(
+    name: customer_data[:name],
+    account_number: customer_data[:account_number],
+    string: customer_data[:string]
+    )
 end
 
 read_sales.products.each do |product|

@@ -2,11 +2,12 @@ class Customer < ActiveRecord::Base
   has_many :sales
   class << self
     def get_customer_data(string)
-      string = remove_parenthesis(string)
-      string = string.split
+      formatted_string = remove_parenthesis(string)
+      string_array = formatted_string.split
       {
-        account_number: string.pop,
-        name: string.join(" ")
+        account_number: string_array.pop,
+        name: string_array.join(" "),
+        string: string
       }
     end
 
