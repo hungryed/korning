@@ -1,0 +1,17 @@
+
+
+<table cellpadding:'10'>
+  <tr>
+    <th>Sale Date</th>
+    <th>Sale Customer</th>
+    <th>Sale amount</th>
+  </tr>
+
+<% @employee.sales.sort.each do |sale| %>
+  <tr>
+    <td><%= sale.sale_date%></td>
+    <td><%= sale.customer.name%></td>
+    <td><%= sale.sale_amount%></td>
+  </tr>
+<% end %>
+</table>
