@@ -3,21 +3,21 @@ require 'pry'
 
 datafile = Rails.root + 'db/data/sales.csv'
 
-# CSV.foreach(datafile, headers: true) do |row|
-#   sale_amount = row['sale_amount'].tr('$', '')
-#   Sale.find_or_create_by(invoice_no: row['invoice_no']) do |sale|
-#     sale.employee = row['employee']
-#     sale.customer_and_account_no = row['customer_and_account_no']
-#     sale.product_name = row['product_name']
-#     sale.sale_date = row['sale_date']
-#     sale.sale_amount = sale_amount
-#     sale.units_sold = row['units_sold']
-#     sale.invoice_no = row['invoice_no']
-#     sale.invoice_frequency = row['invoice_frequency']
-
-#     puts "Sale with invoice no. #{sale.invoice_no} processed"
-#   end
-# end
+CSV.foreach(datafile, headers: true) do |row|
+  sale_amount = row['sale_amount'].tr('$', '')
+  sale = Sale.find_or_create_by(invoice_no: row['invoice_no'])
+  sale.update_attributes(
+    employee: row['employee'],
+    customer_and_account_no: row['customer_and_account_no'],
+    product_name: row['product_name'],
+    sale_date: row['sale_date'],
+    sale_amount: sale_amount,
+    units_sold: row['units_sold'],
+    invoice_no: row['invoice_no'],
+    invoice_frequency: row['invoice_frequency']
+    )
+    puts "Sale with invoice no. #{sale.invoice_no} processed"
+end
 read_sales = SalesReader.new(datafile)
 read_sales.read_file
 read_sales.get_individual_stats
@@ -27,6 +27,19 @@ read_sales.remove_good_invoices
 read_sales.reassign_invoice_numbers
 
 sales = read_sales.data
+
+# sales.each do |sale|
+#   sale = Sale.find_or_create_by(sale[:invoice_no])
+#   sale.update_attributes(
+#     employee: sale[:employee],
+#     customer_and_account_no: sale[:customer_and_account_no],
+#     product_name: sale[:product_name],
+#     sale_date: sale[:sale_date],
+#     sale_amount: sale[:sale_amount],
+#     units_sold: sale[:units_sold],
+#     invoice_no: sale[:invoice_no],
+#     invoice_frequency: sale[:invoice_frequency])
+# end
 
 read_sales.employees.each do |employee_string|
   employee_hash = Employee.get_employee_hash(employee_string)
@@ -64,4 +77,3 @@ read_sales.frequency.each do |frequency|
   end
 end
 
-binding.pry
