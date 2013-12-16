@@ -13,7 +13,7 @@ class AddReferenceToSalesFromEmployee < ActiveRecord::Migration
   end
 
   def down
-    add_column :sales, :employee
+    add_column :sales, :employee, :string
     Sale.all.each do |sale|
       id = sale.employee_id
       employee_string = Employee.find(id).string

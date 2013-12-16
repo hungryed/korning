@@ -5,12 +5,13 @@ datafile = Rails.root + 'db/data/sales.csv'
 
 CSV.foreach(datafile, headers: true) do |row|
   sale_amount = row['sale_amount'].tr('$', '')
+  employee_id = Employee.where(string: row['employee']).first.id
   sale = Sale.find_or_create_by(invoice_no: row['invoice_no'])
   sale.update_attributes(
-    employee: row['employee'],
+    employee_id: employee_id,
     customer_and_account_no: row['customer_and_account_no'],
     product_name: row['product_name'],
-    sale_date: row['sale_date'],
+    sale_date: Chronic.parse(row['sale_date']),
     sale_amount: sale_amount,
     units_sold: row['units_sold'],
     invoice_no: row['invoice_no'],

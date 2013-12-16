@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 20131216194902) do
     t.string   "invoice_frequency"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "employee"
     t.integer  "employee_id"
   end
 

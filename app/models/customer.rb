@@ -1,5 +1,5 @@
 class Customer < ActiveRecord::Base
-
+  has_many :sales
   class << self
     def get_customer_data(string)
       string = remove_parenthesis(string)

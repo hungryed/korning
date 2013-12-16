@@ -1,4 +1,5 @@
 class Employee < ActiveRecord::Base
+  has_many :sales
 
   class << self
     def get_employee_hash(string)
