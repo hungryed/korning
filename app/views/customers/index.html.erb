@@ -1,0 +1,16 @@
+<h1>Customers</h1>
+
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Account Number</th>
+    <th>Website</th>
+  </tr>
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.name %></td>
+      <td><%= customer.account_number %></td>
+      <td><%= link_to "Website", customer.website %></td>
+    </tr>
+  <% end %>
+</table>
