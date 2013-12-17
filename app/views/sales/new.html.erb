@@ -1,0 +1,67 @@
+<h1>New Sale</h1>
+
+<%= form_for(@sales) do |f| %>
+  <div>
+    <%= f.label(:sale_amount) %>
+    <%= f.text_feild(:sale_amount) %>
+  </div>
+
+  <div>
+    <%= f.label(:units_sold) %>
+    <%= f.text_feild(:units_sold) %>
+  </div>
+
+  <div>
+    <%= radio_button_tag(:invoice_frequency, 1) %>
+    <%= label_tag(:invoice_frequency, "Once") %>
+    <%= radio_button_tag(:invoice_frequency, 2) %>
+    <%= label_tag(:invoice_frequency, "Quarterly") %>
+    <%= radio_button_tag(:invoice_frequency, 3) %>
+    <%= label_tag(:invoice_frequency, "Monthly") %>
+  </div>
+
+  <div>
+    <%= radio_button_tag(:employee_id, 1) %>
+    <%= label_tag(:employee_id, "Clancy Wiggum") %>
+    <%= radio_button_tag(:employee_id, 2) %>
+    <%= label_tag(:employee_id, "Ricky Bobby") %>
+    <%= radio_button_tag(:employee_id, 3) %>
+    <%= label_tag(:employee_id, "Bob Lob") %>
+    <%= radio_button_tag(:employee_id, 4) %>
+    <%= label_tag(:employee_id, "Willie Groundskeeper") %>
+  </div>
+
+  <div>
+    <%= radio_button_tag(:product_id, 1) %>
+    <%= label_tag(:product_id, ) %>
+    <%= radio_button_tag(:product_id, 2) %>
+    <%= label_tag(:product_id, ) %>
+    <%= radio_button_tag(:product_id, 3) %>
+    <%= label_tag(:product_id, ) %>
+    <%= radio_button_tag(:product_id, 4) %>
+    <%= label_tag(:product_id, ) %>
+  </div>
+
+  <div>
+    <%= radio_button_tag(:customer_id, 1) %>
+    <%= label_tag(:cutomer_id,"Motorola") %>
+    <%= radio_button_tag(:customer_id, 2) %>
+    <%= label_tag(:cutomer_id,"LG") %>
+    <%= radio_button_tag(:customer_id, 3) %>
+    <%= label_tag(:cutomer_id,"HTC") %>
+    <%= radio_button_tag(:customer_id, 4) %>
+    <%= label_tag(:cutomer_id,"Nokia") %>
+    <%= radio_button_tag(:customer_id, 5) %>
+    <%= label_tag(:cutomer_id,"Samsung") %>
+    <%= radio_button_tag(:customer_id, 6) %>
+    <%= label_tag(:cutomer_id, "Apple") %>
+  </div>
+
+
+  <div>
+    <%= f.label(:invoice_no) %>
+    <%= f.text_feild(:invoice_no) %>
+  </div>
+  <%= f.submit "Submit" %>
+<% end %>
+

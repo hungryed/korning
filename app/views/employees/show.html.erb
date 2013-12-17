@@ -15,3 +15,6 @@
   </tr>
 <% end %>
 </table>
+
+<%= line_chart @employee.sales.group_by_month(:sale_date).count %>
+<%= line_chart({15.month.ago => 5}) %>

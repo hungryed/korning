@@ -80,3 +80,4 @@ read_sales.frequency.each do |frequency|
   end
 end
 
+binding.pry

@@ -7,6 +7,8 @@ gem 'rails', '4.0.1'
 gem 'pg'
 gem 'pry'
 gem 'chronic'
+gem 'chartkick'
+gem 'groupdate'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
