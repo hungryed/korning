@@ -66,17 +66,19 @@ end
 read_sales.products.each do |product|
   # product.split.map(&:capitalize).join(" ")
   product_description = Product.get_product_info(product)
-  Product.find_or_create_by(name: product_description[:name]) do |product|
-    product.name = product_description[:name]
+  product = Product.find_or_create_by(name: product_description[:name])
+  product.update_attributes(
+    name: product_description[:name])
   end
 end
 
 read_sales.frequency.each do |frequency|
   frequency_description = PaymentFrequency.get_frequency_info(frequency)
   payment_cycle = frequency_description[:frequency]
-  PaymentFrequency.find_or_create_by(rate: payment_cycle) do |frequency|
-    frequency.rate = payment_cycle
-    frequency.invoice_bills = frequency_description[:cycle]
+  frequency = PaymentFrequency.find_or_create_by(rate: payment_cycle)
+  frequency.update_attributes(
+    rate:  payment_cycle,
+    invoice_bills:  frequency_description[:cycle])
   end
 end
 
